@@ -43,7 +43,7 @@ def s_from_str(s:str) -> int:
     return(sum([a*b for a,b in zip(ftr, map(int,s.split(':')))]))
 
 
-if __name__ == '__main__':
+def main(INPUT_VIDEO, OUTPUT_VIDEO, CSV_FILES):
     df = import_multiple_csv(CSV_FILES).sort_values('Time')
 
     df = df.sort_values('Time')
@@ -106,3 +106,6 @@ if __name__ == '__main__':
 
     print("Writing video")
     cut_video.write_videofile(OUTPUT_VIDEO, audio=True, bitrate='6000k')
+
+if __name__ == "__main__":
+    main(INPUT_VIDEO, OUTPUT_VIDEO, CSV_FILES)
