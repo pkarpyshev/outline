@@ -1,6 +1,9 @@
 Outline
 =======
 
+A simple python script to generate an outline of a football match.
+
+
 Prerequisites:
 --------------
 *poetry*
