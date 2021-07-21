@@ -1,7 +1,16 @@
 Outline
 =======
 
-Usage:
------
+Prerequisites:
+--------------
+*poetry*
 
-``poetry run python outline.py in.mp4 out.mp4 /path/to/csv/*.csv``
+Installation:
+-------------
+
+``poetry install``
+
+Usage:
+------
+
+``poetry run python outline.py in.mp4 out.mp4 /path/to/csv``
