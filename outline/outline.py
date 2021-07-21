@@ -13,15 +13,6 @@ ADD_CAPTION = True
 class CommandLineArgumentError(Exception):
     pass
 
-if len(sys.argv) < 4:
-    raise CommandLineArgumentError("Wrong number of command-line arguments, must be at least 3, provided {}".format(len(sys.argv) - 1))
-else:
-    INPUT_VIDEO = sys.argv[1]
-    OUTPUT_VIDEO = sys.argv[2]
-    CSV_FILES = sys.argv[3:]
-
-
-
 
 def import_multiple_csv(files:list) -> pd.DataFrame:
     l = []
@@ -43,7 +34,11 @@ def s_from_str(s:str) -> int:
     return(sum([a*b for a,b in zip(ftr, map(int,s.split(':')))]))
 
 
-def main(INPUT_VIDEO, OUTPUT_VIDEO, CSV_FILES):
+def main(argv:list):
+    INPUT_VIDEO = argv[1]
+    OUTPUT_VIDEO = argv[2]
+    CSV_FILES = argv[3:]
+    
     df = import_multiple_csv(CSV_FILES).sort_values('Time')
 
     df = df.sort_values('Time')
@@ -108,4 +103,7 @@ def main(INPUT_VIDEO, OUTPUT_VIDEO, CSV_FILES):
     cut_video.write_videofile(OUTPUT_VIDEO, audio=True, bitrate='6000k')
 
 if __name__ == "__main__":
-    main(INPUT_VIDEO, OUTPUT_VIDEO, CSV_FILES)
+    if len(sys.argv) < 4:
+        raise CommandLineArgumentError("Wrong number of command-line arguments, must be at least 3, provided {}".format(len(sys.argv) - 1))
+    else:
+        main(sys.argv)
